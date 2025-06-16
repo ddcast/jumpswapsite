@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,7 +102,7 @@
       <div class="description">
         <p>A retro video game-centric keepsake photo service, built exclusively for convention-goers at events like <strong>Classic Game Fest</strong> in Austin, Texas.</p>
         <div id="countdownContainerEl">
-          <span id="countdownEl"></span> days until CGF 2025!
+          <span id="countdownEl"></span> until CGF 2025!
         </div>
         <ul>
           <li>👾 &nbsp;Perfect for cosplayers, families, and friends.</li>
@@ -143,12 +142,13 @@
             var minutes = Math.floor((distance % _hour) / _minute);
             var seconds = Math.floor((distance % _minute) / _second);
 
-            countdownEl.innerHTML = days;
+            countdownEl.innerHTML =
+              (days ? `${days} days` : "") ||
+              (hours ? `${hours} hours` : "") ||
+              (minutes ? `${minutes} minutes` : "");
           }
 
           showRemaining();
-
-          timer = setInterval(showRemaining, 1000);
         })();
       </script>
     </div>
