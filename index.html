@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,6 +80,19 @@
     a {
       color: white;
     }
+
+    #countdownContainerEl {
+      margin-top: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      width: fit-content;
+      margin: 0 auto;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    #countdownEl {
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -87,7 +101,10 @@
     <div class="content">
       <div class="logo">jumpswap</div>
       <div class="description">
-        A retro video game-centric keepsake photo service, built exclusively for convention-goers at events like <strong>Classic Game Fest</strong> in Austin, Texas.
+        <p>A retro video game-centric keepsake photo service, built exclusively for convention-goers at events like <strong>Classic Game Fest</strong> in Austin, Texas.</p>
+        <div id="countdownContainerEl">
+          <span id="countdownEl"></span> days until CGF 2025!
+        </div>
         <ul>
           <li>👾 &nbsp;Perfect for cosplayers, families, and friends.</li>
           <li>📸 &nbsp;Quick and easy — just smile, snap, and enjoy!</li>
@@ -100,7 +117,39 @@
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdczth3mwALp36umYiyfvQNNTOiTBKgFFhiOZy1RlLlot6_Dg/viewform?usp=sf_link">Contact</a>
       </footer>
       <script>
-        yearEl.innerHTML = new Date().getFullYear();
+        ;(function () {
+          yearEl.innerHTML = new Date().getFullYear();
+
+          var end = new Date("07/27/2025 09:00 AM");
+          var _second = 1000;
+          var _minute = _second * 60;
+          var _hour = _minute * 60;
+          var _day = _hour * 24;
+          var timer;
+
+          function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            
+            if (distance <= 0) {
+              clearInterval(timer)
+              countdownContainerEl.innerHTML = "CGF: Visit <strong>HeyGameBoy</strong> for jumpswap photos!";
+
+              return;
+            }
+
+            var days = Math.floor(distance / _day);
+            var hours = Math.floor((distance % _day) / _hour);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            var seconds = Math.floor((distance % _minute) / _second);
+
+            countdownEl.innerHTML = days;
+          }
+
+          showRemaining();
+
+          timer = setInterval(showRemaining, 1000);
+        })();
       </script>
     </div>
   </div>
