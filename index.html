@@ -120,6 +120,7 @@
           yearEl.innerHTML = new Date().getFullYear();
 
           var end = new Date("07/25/2025 09:00 AM");
+          var stop = new Date("07/27/2025 05:00 PM");
           var _second = 1000;
           var _minute = _second * 60;
           var _hour = _minute * 60;
@@ -129,12 +130,17 @@
           function showRemaining() {
             var now = new Date();
             var distance = end - now;
+            var stopDistance = stop - now;
             
             if (distance <= 0) {
               clearInterval(timer)
               countdownContainerEl.innerHTML = "CGF: Visit <strong>HeyGameBoy</strong> for jumpswap photos!";
 
               return;
+            }
+
+            if (stopDistance <= 0) {
+              countdownContainerEl.parentElement.removeChild(countdownContainerEl);
             }
 
             var days = Math.floor(distance / _day);
