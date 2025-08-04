@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-  <title>jumpswap</title>
+  <title>HeyGameBoy</title>
   <style>
     html, body {
       margin: 0;
@@ -96,16 +96,17 @@
   <div class="background"></div>
   <div class="overlay">
     <div class="content">
-      <div class="logo">jumpswap</div>
+      <div class="logo">HeyGameBoy</div>
       <div class="description">
-        <p>A retro video game-centric keepsake photo service, built exclusively for convention-goers at events like <strong>Classic Game Fest</strong> in Austin, Texas.</p>
-        <div id="countdownContainerEl">
+        <p>On-site retro game console repair, offered live at conventions like <strong>Classic Game Fest</strong> in Austin, Texas.</p>
+        <div id="countdownContainerEl" style="display: none;">
           <span id="countdownEl"></span> until CGF 2025!
         </div>
         <ul>
-          <li>👾 &nbsp;Perfect for cosplayers, families, and friends.</li>
-          <li>📸 &nbsp;Quick and easy — just smile, snap, and enjoy!</li>
-          <li>🕹️ &nbsp;Instant digital download.</li>
+          <li>🔧 &nbsp;Expert repairs for Game Boy, NES, SNES, and more.</li>
+          <li>⚡ &nbsp;Same-day pickup for most repairs.</li>
+          <li>🕹️ &nbsp;Custom Game Boy Kits, rare games, and accessories.</li>
+          <li>📬 &nbsp;Get a repair quote or Etsy link if you forgot your console!</li>
         </ul>
       </div>
       <footer>
@@ -115,6 +116,14 @@
       </footer>
       <script>
         ;(function () {
+          var cgfEnabled = true;
+
+          if (cgfEnabled) {
+            countdownContainerEl.style.display = "block";
+          } else {
+            return;
+          }
+          
           yearEl.innerHTML = new Date().getFullYear();
 
           var end = new Date("07/25/2025 09:00 AM");
@@ -129,10 +138,16 @@
             var now = new Date();
             var distance = end - now;
             var stopDistance = stop - now;
+            var ended = now >= end;
+
+            if (ended) {
+              countdownContainerEl.style.display = "none";
+              return;
+            }
             
             if (distance <= 0) {
               clearInterval(timer)
-              countdownContainerEl.innerHTML = "CGF: Visit <strong>HeyGameBoy</strong> for jumpswap photos!";
+              countdownContainerEl.innerHTML = "CGF: Visit <strong>HeyGameBoy</strong> for your repair!";
 
               return;
             }
