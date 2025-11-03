@@ -105,7 +105,7 @@
       <div class="description">
         <p><strong>jumpswap</strong> is an on-site order fulfillment system built for repair services at events like <strong>Classic Game Fest</strong> in Austin, Texas.</p>
         <div id="countdownContainerEl">
-          <span id="countdownEl"></span> until CGF 2025!
+          <span id="countdownEl"></span> until CGF <span id="countdownYearEl"></span>!
         </div>
         <ul>
           <li>🖨️ &nbsp;Print receipts with custom templates.</li>
@@ -169,6 +169,8 @@
               (days ? `${days} days` : "") ||
               (hours ? `${hours} hours` : "") ||
               (minutes ? `${minutes} minutes` : "");
+
+            countdownYearEl.innerHTML = end.getFullYear();
           }
 
           showRemaining();
